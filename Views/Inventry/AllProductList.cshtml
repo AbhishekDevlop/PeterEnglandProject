@@ -1,0 +1,60 @@
+﻿@model IEnumerable<PeterEngland2.Models.Inventry>
+
+@{
+    ViewData["Title"] = "AllProductList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>AllProductList</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+             <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+              <th>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (PeterEngland2.Models.Inventry item in ViewBag.Products) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+            <td>
+                <img src="~/images/@item.ProductImageUrl" width="40" height="40" asp-append-version ="true">
+            </td>
+            <td>
+                @Html.ActionLink("Edit","Edit",new{ProductId=item.ProductId})
+              @*  <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>*@ |
+              @Html.ActionLink("Delete","Delete",new{ProductId=item.ProductId})
+                @*<a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

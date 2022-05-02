@@ -1,0 +1,58 @@
+﻿@using PeterEngland2.Models
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+@model IEnumerable<PeterEngland2.Models.Inventry>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>
+   @Accessor.HttpContext.Session.GetString("Name")
+
+</h1>
+  @* @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }
+*@
+   
+@Html.Raw(Accessor.HttpContext.Session.GetString("msg"))
+
+  @*  @if(Accessor.HttpContext.Session.GetString("msg")!=null||Accessor.HttpContext.Session.GetString("msg")!="")
+      {
+       <script type="text/javascript">
+            window.onload = function () {
+                alert("@Accessor.HttpContext.Session.GetString("msg"));
+            };
+        </script>
+      }*@
+@Html.Raw(ViewBag.OrderPlaced)
+
+
+<p>
+    @*<a asp-action="Create">Create New</a>*@
+</p>
+<div class="row">
+    @foreach (PeterEngland2.Models.Inventry item in ViewBag.Products)
+    {
+        <div class="col-lg-3 col-md-3 col-xs-12">
+        <div class="card" style="width: 18rem;">
+  <img src="~/images/@item.ProductImageUrl" height="200" class="card-img-top"  alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Product Name: @Html.DisplayFor(modelItem => item.ProductName)</h5>
+    <h5 class="card-title">Product Price: @Html.DisplayFor(modelItem => item.ProductPrice)</h5>
+    <p class="card-text"> </p>
+    <div> @Html.ActionLink("Buy Now","Order",new{ProductId=item.ProductId})</div>
+    <div> @Html.ActionLink("Add To Cart","AddToCart",new{ProductId=item.ProductId})</div>
+  </div>
+</div>
+</div>
+    }
+</div>
+

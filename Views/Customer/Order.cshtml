@@ -1,0 +1,60 @@
+﻿@using PeterEngland2.Models
+@model PeterEngland2.Models.Inventry
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<section>
+        <div class="container">
+            <!--100 % width container-->
+            <div class="row">
+
+                <div class="col-lg-4 col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="~/images/@Model.ProductImageUrl" width = "150" height="150" alt="...">
+                        <div class="card-body">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-8">
+                    <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+                        <h4 id="scrollspyHeading1">Product Name: @Html.DisplayFor(model => model.ProductName)</h4>
+
+                        <h5 id="scrollspyHeading2">Product Price: @Html.DisplayFor(model => model.ProductPrice)</h5>
+                        
+            </div>
+            
+               @using (Html.BeginForm())
+                {
+                    <div>
+                        <input type="hidden" name="id" value="@Model.ProductId"/>
+                    
+                         <h5 id="scrollspyHeading1">Product Name: @Html.DisplayFor(model => model.ProductName)</h5>
+
+                        <h4 id="scrollspyHeading2">Product Price: @Html.DisplayFor(model => model.ProductPrice)</h4>
+                         <div class="form-group">
+                <input type="number" placeholder="Enter Qty" min="1" max"10" name="Qty"/>
+                
+                <input type="submit" value="Procced" class ="btn btn-warning" />
+            </div>
+                    </div>
+                }
+                @* <h4 id="scrollspyHeading4">
+                            Questions and Answers
+
+                        </h4>
+                        <p>
+                            <h6>Q:is it day and date automatic change?</h6>
+                            A:Yes
+                            <h6>Q:this is nice or not?</h6>
+                            A:Nice
+
+                        </p>*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>

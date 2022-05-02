@@ -1,0 +1,50 @@
+﻿@model PeterEngland2.Models.Cart
+
+@{
+    ViewData["Title"] = "Proceed";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>Proceed</h1>
+
+<h4>Cart</h4>
+ <div class="card" style="width: 18rem;">
+                        <img src="~/images/@Model.ProductImageUrl" width = "150" height="150" alt="...">
+                        <div class="card-body">
+
+ <div class="container">
+            <!--100 % width container-->
+            <div class="row">
+
+            
+                 @using (Html.BeginForm())
+                {
+                    <div>
+                        <input type="hidden" name="id" value="@Model.ProductId"/>
+                    
+                         <h5 id="scrollspyHeading1">Product Name: @Html.DisplayFor(model => model.ProductName)</h5>
+
+                        <h4 id="scrollspyHeading2">Product Price: @Html.DisplayFor(model => model.ProductPrice)</h4>
+                         <div class="form-group">
+                <input type="number" placeholder="Enter Qty" min="1" max"10" name="Qty"/>
+                
+                <input type="submit" value="Procced" class ="btn btn-warning" />
+            </div>
+                    </div>
+                }
+            
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+ 
+    </div>
+</div>
+
+<div>
+    <a asp-action="ViewCart">To Cart</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

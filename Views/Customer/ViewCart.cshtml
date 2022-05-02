@@ -1,0 +1,59 @@
+﻿@model IEnumerable<PeterEngland2.Models.Cart>
+
+@{
+    ViewData["Title"] = "ViewCart";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>ViewCart</h1>
+@Html.Raw(ViewBag.Add)
+<p>
+    <a asp-action="Index">Add More</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.ProductQuntity)
+            </th>
+          
+            <th>
+               
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (PeterEngland2.Models.Cart item in Model) {
+        <tr>
+         .<td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductQuntity)
+            </td>
+         
+            <td>
+               <img src="~/images/@item.ProductImageUrl" width="40" height="40" asp-append-version ="true">
+            </td>
+            <td>
+                @Html.ActionLink("BuyNow","Proceed",new {cartid = @item.CartId})
+               |
+             
+                <a asp-action="Delete" asp-route-id="@item.CartId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
